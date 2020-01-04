@@ -1,5 +1,5 @@
 /* eslint no-restricted-globals: 0 */
-import { ThemedAnimation } from './animation';
+import { ThemedAnimation, Animation } from './animation';
 
 let animationWorker = null;
 let canvas, canvasCtx;
@@ -12,7 +12,9 @@ self.onmessage = function(e) {
       break;
     case 'start':
       if (!animationWorker) {
-        animationWorker = new ThemedAnimation(canvasCtx);
+        animationWorker = e.data.isThemed
+          ? new ThemedAnimation(canvasCtx)
+          : new Animation(canvasCtx);
       }
       animationWorker.start();
       break;

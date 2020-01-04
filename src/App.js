@@ -42,7 +42,7 @@ function App() {
   const playAnimation = inWorker => {
     if (inWorker) {
       animationWindow.current.stop();
-      workerRef.current.postMessage({ msg: 'start' });
+      workerRef.current.postMessage({ msg: 'start', isThemed: true });
       workerStarted.current = true;
     } else {
       animationWindow.current.start();
